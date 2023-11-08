@@ -4,3 +4,5 @@ on SabDiv.ItensDePedidos (IdPedido, IdItemDeCardapio)
 
 create index ind_Pedidos_IdCliente_IdMetodo
 on SabDiv.Pedidos (IdCliente, IdMetodo)
+
+a
