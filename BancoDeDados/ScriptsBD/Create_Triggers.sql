@@ -44,15 +44,17 @@ on SabDiv.ItensDeCardapios
 instead of delete
 as
 begin
-	if exists(select * from deleted d
-			  inner join SabDiv.ItensDeCardapios i on i.IdItemDeCardapio = d.IdItemDeCardapio)
+	if exists(select IdItemDeCardapio from SabDiv.ItensDePedidos
+				where IdItemDeCardapio in (select IdItemDeCardapio from deleted))
 	begin
-	THROW 50000, 'Item não pode ser excluído pois há registros desse item', 1
+		update SabDiv.ItensDeCardapios
+		set NomeItem = '
+		'
+		where IdItemDeCardapio in (select IdItemDeCardapio from deleted)
 	end
-
 	else
 	begin
-	delete from SabDiv.ItemDeCardapio
-	where idItemDeCardapio in (select ItemDeCardapio from deleted)
+		delete from SabDiv.ItensDeCardapios
+		where IdItemDeCardapio in (select IdItemDeCardapio from deleted)
 	end
 end

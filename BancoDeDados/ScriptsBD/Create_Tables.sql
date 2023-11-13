@@ -2,7 +2,7 @@ create schema SabDiv
 
 create table SabDiv.Clientes(
 	IdCliente int identity(1,1) primary key,
-	NomeUsuario varchar(100) not null,
+	NomeUsuario varchar(100) unique not null,
 	Senha varbinary(80) not null
 )
 
@@ -43,7 +43,7 @@ create drop table SabDiv.Pedidos(
 	IdCliente int foreign key (idCliente) references SabDiv.Clientes(IdCliente),
 	IdMetodoPagamento int foreign key (IdMetodoPagamento) references SabDiv.MetodosDePagamento(IdMetodoPagamento),
 	DataEhora datetime not null,
-	PrecoTotal decimal(10,2) not null
+	PrecoTotal decimal(10,2)
 )
 
 create drop table SabDiv.ItensDePedidos(
@@ -53,3 +53,12 @@ create drop table SabDiv.ItensDePedidos(
 	Quantidade int not null
 )
 
+
+drop table SabDiv.AuditoriaItensDeCardapios
+drop table SabDiv.ItensDePedidos
+drop table SabDiv.ItensDeCardapios
+drop table SabDiv.Cardapios
+drop table SabDiv.Pedidos
+drop table SabDiv.MetodosDePagamento
+drop table SabDiv.EnderecosClientes
+drop table SabDiv.Clientes
